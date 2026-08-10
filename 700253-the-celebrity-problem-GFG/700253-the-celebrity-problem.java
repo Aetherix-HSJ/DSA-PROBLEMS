@@ -1,0 +1,36 @@
+class Solution {
+    public int celebrity(int arr[][]) {
+        // code here
+        Stack<Integer> st = new Stack();
+        for(int i=0; i<arr.length; i++){
+            st.push(i);
+        }
+        while(st.size()>1){
+            int a = st.pop();
+            int b = st.pop();
+            boolean aFlag = true;
+            boolean bFlag = true;
+            if(arr[a][b]==1) aFlag = false;
+            else bFlag = false;
+            if(arr[b][a]==1) bFlag = false;
+            else aFlag = false;
+            if(aFlag) st.push(a);
+            if(bFlag) st.push(b);
+        }
+        if(st.size()==0) return -1;
+        int celeb = st.pop();
+        for(int j = 0; j<arr.length; j++){
+            if(j==celeb) continue;
+            if(arr[celeb][j]==1) return -1;
+        }
+        for(int i = 0; i<arr.length; i++){
+            if(i==celeb) continue;
+            if(arr[i][celeb]==0) return -1;
+        }
+        return celeb;
+    }
+}
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
