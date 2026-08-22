@@ -2,26 +2,23 @@ import java.util.*;
 class Solution {
     public List<String>powerSet(String s) {
         // Code here
-        List<String> b = sub(s);
-        Collections.sort(b);
-        return b;
+        List<String> c = sub(s);
+        Collections.sort(c);
+        return c;
     }
     static List<String> sub(String s){
-        if(s.length()==0){
-            List<String> rest = new ArrayList<>();
-            rest.add("");
-            return rest;
+        if(s.length()==0) {
+            List<String> ans = new ArrayList<>();
+            ans.add("");
+            return ans;
         }
         char ch = s.charAt(0);
-        List<String> a = sub(s.substring(1));
-        List<String> ans = new ArrayList<>();
-        for(String ele: a){
-            ans.add(""+ele);
-        }
-        for(String ele: a){
-            ans.add(ch+ele);
-        }
-        return ans;
+        String s1 = s.substring(1);
+        List<String> a = sub(s1);
+        List<String> b = new ArrayList<>();
+        for(String ele: a) b.add(""+ele);
+        for(String ele: a) b.add(ch+ele);
+        return b;
     }
 }
 
