@@ -6,10 +6,9 @@ class Solution {
         for(int i=0; i<n; i++){
             st.push(q.remove());
         }
-        while(st.size()>0){
+        for(int i=0; i<n; i++){
             q.add(st.pop());
         }
-        return ;
     }
 }
 
