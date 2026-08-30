@@ -1,15 +1,25 @@
 class Solution {
     public void rearrangeQueue(Queue<Integer> q) {
         // code here
-        Queue<Integer> q2 = new LinkedList<>();
-        int mid = q.size()/2;
-        for(int i=0; i<mid; i++){
-            q2.add(q.remove());
-        }
-        while(q2.size()>0){
-            q.add(q2.remove());
-            q.add(q.remove());
-        }
+       //Using stack
+       Stack<Integer> st = new Stack<>();
+       int n = q.size();
+       int mid = q.size()/2;
+       for(int i=0; i<mid; i++){
+           st.push(q.remove());
+       }
+       while(st.size()>0) q.add(st.pop());
+       for(int i=0; i<mid; i++){
+           st.push(q.remove());
+       }
+       while(st.size()>0){
+           q.add(st.pop());
+           q.add(q.remove());
+       } 
+       for(int i=0; i<n; i++){
+           st.push(q.remove());
+       }
+        while(st.size()>0) q.add(st.pop());
     }
 }
 
