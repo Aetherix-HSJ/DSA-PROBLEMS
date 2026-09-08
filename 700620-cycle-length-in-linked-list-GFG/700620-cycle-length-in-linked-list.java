@@ -12,24 +12,21 @@ class Node {
 class Solution {
     public int lengthOfLoop(Node head) {
         // code here
-        HashMap<Node,Integer> map = new HashMap<>();
-        Node temp = head;
-        int size = 0;
-        int idx = 0;
-        temp = head;
-        while(temp!=null){
-            if(map.containsKey(temp)) {
-                int a = map.get(temp);
-                return size-a;
-            }
-            else{
-                map.put(temp,idx);
-                idx++;
-                size++;
-            }
-            temp = temp.next;
+        Node slow = head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow==fast) break;
         }
-        return 0;
+        if(fast==null||fast.next==null) return 0;
+        Node n1 = slow.next;
+        int size = 1;
+        while(n1!=slow){
+            n1 = n1.next;
+            size++;
+        }
+        return size;
     }
 }
 
