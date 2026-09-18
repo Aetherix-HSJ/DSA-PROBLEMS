@@ -1,16 +1,14 @@
 class Solution {
-    void segregate0and1(int[] arr) {
+    void segregate0and1(int[] nums) {
         // code here
-        int i=0, j = arr.length-1;
+        int i = 0, j = nums.length-1;
         while(i<=j){
-            if(arr[i]==0) i++;
-            else if(arr[j]==1) j--;
-            else{
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+            if(nums[i]==0) i++;
+            else {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
                 j--;
-                i++;
             }
         }
     }
