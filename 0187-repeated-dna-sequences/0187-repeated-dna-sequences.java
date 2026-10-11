@@ -6,11 +6,11 @@ class Solution {
         HashSet<String> seen = new HashSet<>();
         HashSet<String> result = new HashSet<>();
         for(int i=0; i<=s.length()-10; i++){
-            String a = s.substring(i,i+10);
-            if(seen.contains(a)){
-                result.add(a);
-            }
-            seen.add(a);
+           String c = s.substring(i,i+10);
+           if(seen.contains(c)){
+            result.add(c);
+           }
+           seen.add(c);
         }
         return new ArrayList<>(result);
     }
