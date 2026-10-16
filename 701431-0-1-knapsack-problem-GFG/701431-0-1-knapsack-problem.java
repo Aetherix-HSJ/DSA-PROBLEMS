@@ -5,25 +5,24 @@ class Solution {
         int[][] dp = new int[n+1][W+1];
         for(int i=0; i<n+1; i++){
             for(int j=0; j<W+1; j++){
-            dp[i][j]=-1;
+            if(i==0 || j==0) dp[i][j]=0;
             }
         }
         return solve(W,val,wt,n,dp);
     }
      public int solve(int W, int val[], int wt[],int n,int[][] dp) {
         // code here
-        if(n==0 || W==0) return 0;
-        if(dp[n][W]!=-1) return dp[n][W];
-        if(wt[n-1]<=W){
-            int a = val[n-1]+solve(W-wt[n-1],val,wt,n-1,dp);
-            int b = solve(W,val,wt,n-1,dp);
-            dp[n][W] = Math.max(a,b);
-            return Math.max(a,b);
+        for(int i=1; i<n+1; i++){
+            for(int j=1; j<W+1; j++){
+                if(wt[i-1]<=j){
+                    dp[i][j]= Math.max(val[i-1]+dp[i-1][j-wt[i-1]],dp[i-1][j]);
+                }
+                else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
         }
-        else{
-            dp[n][W] = solve(W,val,wt,n-1,dp);
-            return solve(W,val,wt,n-1,dp);
-        } 
+        return dp[n][W];
     }
 }
 
